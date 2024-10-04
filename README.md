@@ -1,39 +1,34 @@
-<p align="center">
-  <small>Join the project community on our server!</small>
-  <br/><br/>
-  <a href="https://discord.gg/https://discord.gg/btZpkp45gQ" target="_blank" title="Join our community!">
-    <img src="https://dcbadge.limes.pink/api/server/https://discord.gg/btZpkp45gQ"/>
-  </a>
-</p>
-<hr/>
+
 
 <p align="center">
-    <a href="https://github.com/evilsocket/pwnagotchi/releases/latest"><img alt="Release" src="https://img.shields.io/github/release/evilsocket/pwnagotchi.svg?style=flat-square"></a>
-    <a href="https://github.com/evilsocket/pwnagotchi/blob/master/LICENSE.md"><img alt="Software License" src="https://img.shields.io/badge/license-GPL3-brightgreen.svg?style=flat-square"></a>
-    <a href="https://github.com/evilsocket/pwnagotchi/graphs/contributors"><img alt="Contributors" src="https://img.shields.io/github/contributors/evilsocket/pwnagotchi"/></a>
+    <a href="https://github.com/sposito88/pwnagotchi/releases/latest"><img alt="Release" src="https://img.shields.io/github/release/evilsocket/pwnagotchi.svg?style=flat-square"></a>
+    <a href="https://github.com/sposito88/pwnagotchi/blob/master/LICENSE.md"><img alt="Software License" src="https://img.shields.io/badge/license-GPL3-brightgreen.svg?style=flat-square"></a>
+    <a href="https://github.com/sposito88/pwnagotchi/graphs/contributors"><img alt="Contributors" src="https://img.shields.io/github/contributors/evilsocket/pwnagotchi"/></a>
     <a href="https://twitter.com/intent/follow?screen_name=pwnagotchi"><img src="https://img.shields.io/twitter/follow/pwnagotchi?style=social&logo=twitter" alt="follow on Twitter"></a>
 </p>
 
-[Pwnagotchi](https://pwnagotchi.ai/) is an [A2C](https://hackernoon.com/intuitive-rl-intro-to-advantage-actor-critic-a2c-4ff545978752)-based "AI" leveraging [bettercap](https://www.bettercap.org/) that learns from its surrounding WiFi environment to maximize the crackable WPA key material it captures (either passively, or by performing authentication and association attacks). This material is collected as PCAP files containing any form of handshake supported by [hashcat](https://hashcat.net/hashcat/), including [PMKIDs](https://www.evilsocket.net/2019/02/13/Pwning-WiFi-networks-with-bettercap-and-the-PMKID-client-less-attack/), 
-full and half WPA handshakes.
+## Essa imagem teve uma pequena modificação para atender a um publico que usa Raspberry Pi3/3b/3b+
 
-![ui](https://i.imgur.com/X68GXrn.png)
+[Modificações](modificacao.md)
 
-Instead of merely playing [Super Mario or Atari games](https://becominghuman.ai/getting-mario-back-into-the-gym-setting-up-super-mario-bros-in-openais-gym-8e39a96c1e41?gi=c4b66c3d5ced) like most reinforcement learning-based "AI" *(yawn)*, Pwnagotchi tunes [its parameters](https://github.com/evilsocket/pwnagotchi/blob/master/pwnagotchi/defaults.toml) over time to **get better at pwning WiFi things to** in the environments you expose it to. 
+![Descrição da Imagem](./rp3b+.jpg)
 
-More specifically, Pwnagotchi is using an [LSTM with MLP feature extractor](https://stable-baselines.readthedocs.io/en/master/modules/policies.html#stable_baselines.common.policies.MlpLstmPolicy) as its policy network for the [A2C agent](https://stable-baselines.readthedocs.io/en/master/modules/a2c.html). If you're unfamiliar with A2C, here is [a very good introductory explanation](https://hackernoon.com/intuitive-rl-intro-to-advantage-actor-critic-a2c-4ff545978752) (in comic form!) of the basic principles behind how Pwnagotchi learns. (You can read more about how Pwnagotchi learns in the [Usage](https://www.pwnagotchi.ai/usage/#training-the-ai) doc.)
+[Pwnagotchi](https://pwnagotchi.ai/) é uma "IA" baseada em [A2C](https://hackernoon.com/intuitive-rl-intro-to-advantage-actor-critic-a2c-4ff545978752), utilizando o [bettercap](https://www.bettercap.org/), que aprende com o ambiente Wi-Fi ao seu redor para maximizar o material de chaves WPA crackáveis que captura (de forma passiva ou realizando ataques de autenticação e associação). Esse material é coletado como arquivos PCAP contendo qualquer forma de handshake suportada pelo [hashcat](https://hashcat.net/hashcat/), incluindo [PMKIDs](https://www.evilsocket.net/2019/02/13/Pwning-WiFi-networks-with-bettercap-and-the-PMKID-client-less-attack/), handshakes completos e parciais de WPA.
 
-**Keep in mind:** Unlike the usual RL simulations, Pwnagotchi learns over time. Time for a Pwnagotchi is measured in epochs; a single epoch can last from a few seconds to minutes, depending on how many access points and client stations are visible. Do not expect your Pwnagotchi to perform amazingly well at the very beginning, as it will be [exploring](https://hackernoon.com/intuitive-rl-intro-to-advantage-actor-critic-a2c-4ff545978752) several combinations of [key parameters](https://www.pwnagotchi.ai/usage/#training-the-ai) to determine ideal adjustments for pwning the particular environment you are exposing it to during its beginning epochs ... but ** listen to your Pwnagotchi when it tells you it's boring!** Bring it into novel WiFi environments with you and have it observe new networks and capture new handshakes—and you'll see. :)
+Em vez de apenas jogar [Super Mario ou jogos do Atari](https://becominghuman.ai/getting-mario-back-into-the-gym-setting-up-super-mario-bros-in-openais-gym-8e39a96c1e41?gi=c4b66c3d5ced) como a maioria das "IAs" baseadas em aprendizado por reforço (jovem), o Pwnagotchi ajusta seus [parâmetros](https://github.com/evilsocket/pwnagotchi/blob/master/pwnagotchi/defaults.toml) ao longo do tempo para se tornar **melhor em capturar redes Wi-Fi** nos ambientes aos quais você o expõe.
 
-Multiple units within close physical proximity can "talk" to each other, advertising their presence to each other by broadcasting custom information elements using a parasite protocol I've built on top of the existing dot11 standard. Over time, two or more units trained together will learn to cooperate upon detecting each other's presence by dividing the available channels among them for optimal pwnage.
+Mais especificamente, o Pwnagotchi usa uma [LSTM com extrator de características MLP](https://stable-baselines.readthedocs.io/en/master/modules/policies.html#stable_baselines.common.policies.MlpLstmPolicy) como sua rede de políticas para o [agente A2C](https://stable-baselines.readthedocs.io/en/master/modules/a2c.html). Se você não está familiarizado com A2C, aqui está uma [explicação introdutória muito boa](https://hackernoon.com/intuitive-rl-intro-to-advantage-actor-critic-a2c-4ff545978752) (em forma de quadrinhos!) sobre os princípios básicos de como o Pwnagotchi aprende. (Você pode ler mais sobre como o Pwnagotchi aprende no documento de[Uso](https://www.pwnagotchi.ai/usage/#training-the-ai).)
 
-## Documentation
+**Lembre-se:** Ao contrário das simulações de aprendizado por reforço usuais, o Pwnagotchi aprende ao longo do tempo. O tempo para um Pwnagotchi é medido em épocas; uma única época pode durar de alguns segundos a minutos, dependendo de quantos pontos de acesso e estações de clientes estão visíveis. Não espere que seu Pwnagotchi tenha um desempenho incrível logo no início, pois ele estará [explorando](https://hackernoon.com/intuitive-rl-intro-to-advantage-actor-critic-a2c-4ff545978752) várias combinações de [parâmetros-chave](https://www.pwnagotchi.ai/usage/#training-the-ai) para determinar os ajustes ideais para o ambiente específico ao qual você o expõe durante suas primeiras épocas ... mas ouça seu Pwnagotchi quando ele disser que está entediado! Leve-o para novos ambientes Wi-Fi com você, deixe-o observar novas redes e capturar novos handshakes — e você verá. :)
 
+Múltiplas unidades próximas fisicamente podem "conversar" entre si, anunciando sua presença através da transmissão de elementos de informação personalizados usando um protocolo parasita que construí sobre o padrão dot11 existente. Com o tempo, duas ou mais unidades treinadas juntas aprenderão a cooperar ao detectar a presença uma da outra, dividindo os canais disponíveis entre elas para maximizar a eficiência da captura.
+
+## Documentação
 https://www.pwnagotchi.ai
 
 ## Links
-
-&nbsp; | Official Links
+ 	
+&nbsp; | Links Oficiais
 ---------|-------
 Website | [pwnagotchi.ai](https://pwnagotchi.ai/)
 Forum | [community.pwnagotchi.ai](https://community.pwnagotchi.ai/)
@@ -41,6 +36,7 @@ Slack | [pwnagotchi.slack.com](https://invite.pwnagotchi.ai/)
 Subreddit | [r/pwnagotchi](https://www.reddit.com/r/pwnagotchi/)
 Twitter | [@pwnagotchi](https://twitter.com/pwnagotchi)
 
-## License
+## Licença
 
-`pwnagotchi` is made with ♥  by [@evilsocket](https://twitter.com/evilsocket) and the [amazing dev team](https://github.com/evilsocket/pwnagotchi/graphs/contributors). It is released under the GPL3 license.
+`pwnagotchi` foi feito com ♥ por [@evilsocket](https://twitter.com/evilsocket) e o incrível time de desenvolvedores. Ele é lançado sob a licença GPL3.
+
